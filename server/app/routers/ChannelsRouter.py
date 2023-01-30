@@ -473,6 +473,11 @@ async def ChannelJikkyoSessionAPI(
     チャンネルに紐づくニコニコ実況のセッション情報を取得する。
     """
 
+    raise HTTPException(
+        status_code = status.HTTP_422_UNPROCESSABLE_ENTITY,
+        detail = 'Jikkyo is disabled',
+    )
+
     # チャンネル情報を取得
     channel = await Channel.filter(channel_id=channel_id).get_or_none()
 
